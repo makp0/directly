@@ -92,13 +92,11 @@ instruction = (
     "Please respond using the same format to add, modify, or discuss the code.\n\n"
 )
 
-include_instruction = st.checkbox("Include Instruction for ChatGPT", value=True)
-
 if option == 'Serialize':
+    include_instruction = st.checkbox("Include Instruction for ChatGPT", value=True)
     uploaded_file = st.file_uploader("Upload A Project Archive", type="zip")
     if uploaded_file is not None:
         serialized_content = serialize_zip(uploaded_file)
-        print(instruction)
         if include_instruction:
             serialized_content = instruction + serialized_content
         st.code(serialized_content, language='markdown')
