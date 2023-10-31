@@ -32,7 +32,36 @@ def deserialize_to_zip(serialized_text):
     zip_buffer.seek(0)
     return zip_buffer
 
-st.title('Project Structure Generator/Serializer')
+st.title('Directly: Project Structure Generator/Serializer')
+
+st.sidebar.header('Manual')
+st.sidebar.write("""
+Directly is designed to simplify the process of converting a project structure into a compressed, text format and back. This format is optimized for feeding into models like ChatGPT.
+
+### Usage:
+1. **Serialization**:
+    - Select the 'Serialize' option.
+    - Zip your project directory and upload the ZIP file.
+    - Copy the serialized text generated in the text area below.
+
+2. **Deserialization**:
+    - Select the 'Deserialize' option.
+    - Paste the serialized text into the text area below.
+    - Download the resulting ZIP file containing your project structure.
+
+### ChatGPT Interaction:
+The serialized text format is ideal for interacting with OpenAI's ChatGPT. You can feed the serialized text directly to ChatGPT to discuss or review code within a conversational context.
+
+### Format:
+The serialization format is simple. Each file's content is prefixed with a line containing the file's path, enclosed in '---'. For example:
+
+\```
+--- path/to/file.txt ---
+File content here
+\```
+
+This format ensures a clear separation between files while keeping the serialized text compact and easy to parse.
+""")
 
 option = st.radio('Choose an option', ('Serialize', 'Deserialize'))
 
@@ -40,7 +69,8 @@ if option == 'Serialize':
     uploaded_file = st.file_uploader("Upload a ZIP file", type="zip")
     if uploaded_file is not None:
         serialized_content = serialize_zip(uploaded_file)
-        st.text_area('Serialized Content', value=serialized_content, height=400)
+        st.text_area('Serialized Content', value=serialized_content, height=400, key='serialized_content')
+        st.button('Select Text', on_click=lambda: st.session_state['serialized_content'].select_all())
 elif option == 'Deserialize':
     serialized_text = st.text_area('Paste Serialized Content Here', height=400)
     if serialized_text:
