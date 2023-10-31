@@ -46,6 +46,3 @@ elif option == 'Deserialize':
     if serialized_text:
         zip_buffer = deserialize_to_zip(serialized_text)
         st.download_button(label='Download ZIP file', data=zip_buffer, file_name='output.zip')
-
-if __name__ == '__main__':
-    st.run()
