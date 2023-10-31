@@ -23,6 +23,17 @@ Directly is a Streamlit app designed to streamline the process of serializing an
 
 Clone the repository:
 
-```bash
+\```bash
 git clone https://github.com/yourusername/directly.git
 cd directly
+\```
+
+Run the app locally:
+
+\```bash
+streamlit run app.py
+\```
+
+## License
+
+[MIT License](LICENSE)
