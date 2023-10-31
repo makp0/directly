@@ -65,13 +65,8 @@ This format ensures a clear separation between files while keeping the serialize
 
 option = st.radio('Choose an option', ('Deserialize', 'Serialize'))
 
-if option == 'Serialize':
-    uploaded_file = st.file_uploader("Upload A Project Archive", type="zip")
-    if uploaded_file is not None:
-        serialized_content = serialize_zip(uploaded_file)
-        st.code(serialized_content, language='markdown')
-elif option == 'Deserialize':
-    sample_data = """\
+if 'serialized_text' not in st.session_state:
+    st.session_state['serialized_text'] = """\
 --- src/main.py ---
 print("Hello, World!")
 
@@ -82,7 +77,15 @@ This is a sample project structure.
 --- .gitignore ---
 *.pyc
 """
-    serialized_text = st.text_area('Paste Serialized Content Here', value=sample_data, height=400)  # Prefilled text
+
+if option == 'Serialize':
+    uploaded_file = st.file_uploader("Upload A Project Archive", type="zip")
+    if uploaded_file is not None:
+        serialized_content = serialize_zip(uploaded_file)
+        st.code(serialized_content, language='markdown')
+elif option == 'Deserialize':
+    serialized_text = st.text_area('Paste Serialized Content Here', value=st.session_state['serialized_text'], height=400)
+    st.session_state['serialized_text'] = serialized_text
     if serialized_text:
         zip_buffer = deserialize_to_zip(serialized_text)
         st.download_button(label='Download ZIP file', data=zip_buffer, file_name='output.zip')
