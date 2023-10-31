@@ -9,7 +9,11 @@ def serialize_zip(uploaded_file):
         serialized_content = ""
         for file_name in file_names:
             with zip_ref.open(file_name) as file:
-                file_content = file.read().decode()
+                try:
+                    file_content = file.read().decode('utf-8')
+                except UnicodeDecodeError as e:
+                    st.error(f'Error decoding file {file_name}: {e}. This file will be skipped.')
+                    continue  # Skip to the next file
                 serialized_content += f"--- {file_name} ---\n{file_content}\n"
         return serialized_content
 
