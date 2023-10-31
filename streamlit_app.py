@@ -55,10 +55,10 @@ The serialized text format is ideal for interacting with OpenAI's ChatGPT. You c
 ### Format:
 The serialization format is simple. Each file's content is prefixed with a line containing the file's path, enclosed in '---'. For example:
 
-\```
+```
 --- path/to/file.txt ---
 File content here
-\```
+```
 
 This format ensures a clear separation between files while keeping the serialized text compact and easy to parse.
 """)
