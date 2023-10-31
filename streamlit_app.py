@@ -66,7 +66,7 @@ This format ensures a clear separation between files while keeping the serialize
 option = st.radio('Choose an option', ('Serialize', 'Deserialize'))
 
 if option == 'Serialize':
-    uploaded_file = st.file_uploader("Upload a ZIP file", type="zip")
+    uploaded_file = st.file_uploader("Upload A Project Archive", type="zip")
     if uploaded_file is not None:
         serialized_content = serialize_zip(uploaded_file)
         st.code(serialized_content, language='markdown')
