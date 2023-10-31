@@ -12,7 +12,7 @@ def serialize_zip(uploaded_file):
                 try:
                     file_content = file.read().decode('utf-8')
                 except UnicodeDecodeError as e:
-                    st.error(f'Error decoding file {file_name}: {e}. This file will be skipped.')
+                    st.warning(f'Error decoding file {file_name}: {e}. This file will be skipped.')
                     continue  # Skip to the next file
                 serialized_content += f"--- {file_name} ---\n{file_content}\n"
         return serialized_content
