@@ -98,6 +98,7 @@ if option == 'Serialize':
     uploaded_file = st.file_uploader("Upload A Project Archive", type="zip")
     if uploaded_file is not None:
         serialized_content = serialize_zip(uploaded_file)
+        print(instruction)
         if include_instruction:
             serialized_content = instruction + serialized_content
         st.code(serialized_content, language='markdown')
