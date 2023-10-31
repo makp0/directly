@@ -3,10 +3,12 @@ import zipfile
 import os
 from io import BytesIO, StringIO
 
-def serialize_zip(uploaded_file):
+def serialize_zip(uploaded_file, metadata=None):
     with zipfile.ZipFile(uploaded_file, 'r') as zip_ref:
         file_names = zip_ref.namelist()
         serialized_content = ""
+        if metadata:
+            serialized_content += f"=== METADATA ===\n{metadata}\n=== METADATA ===\n"
         for file_name in file_names:
             with zip_ref.open(file_name) as file:
                 try:
@@ -23,7 +25,13 @@ def deserialize_to_zip(serialized_text):
     with zipfile.ZipFile(zip_buffer, 'w') as zip_ref:
         filepath = ""
         content = ""
+        in_metadata_section = False
         for line in lines:
+            if line.startswith('=== METADATA ==='):
+                in_metadata_section = not in_metadata_section
+                continue  # Skip metadata lines
+            if in_metadata_section:
+                continue  # Skip lines inside the metadata section
             if line.startswith('--- '):
                 if filepath:  # save previous file content
                     zip_ref.writestr(filepath, content)
@@ -35,6 +43,7 @@ def deserialize_to_zip(serialized_text):
             zip_ref.writestr(filepath, content)
     zip_buffer.seek(0)
     return zip_buffer
+
 
 st.title('Directly: Project Structure Generator/Serializer')
 
@@ -95,10 +104,9 @@ instruction = (
 if option == 'Serialize':
     uploaded_file = st.file_uploader("Upload A Project Archive", type="zip")
     if uploaded_file is not None:
-        serialized_content = serialize_zip(uploaded_file)
         include_instruction = st.checkbox("Include Instruction for ChatGPT", value=True)
-        if include_instruction:
-            serialized_content = instruction + serialized_content
+        metadata = instruction if include_instruction else None
+        serialized_content = serialize_zip(uploaded_file, metadata)
         st.code(serialized_content, language='markdown')
 elif option == 'Deserialize':
     serialized_text = st.text_area('Paste Serialized Content Here', value=st.session_state['serialized_text'], height=400)
