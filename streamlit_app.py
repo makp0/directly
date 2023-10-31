@@ -44,15 +44,6 @@ def deserialize_to_zip(serialized_text):
     zip_buffer.seek(0)
     return zip_buffer
 
-
-icon_url = "https://github.com/makp0/directly/blob/main/icon.png?raw=true"
-
-st.markdown(
-    f"<img src='{icon_url}' style='display:inline-block; vertical-align:bottom; width:50px; margin-right:20px;'>"
-    f"<h1 style='display:inline-block; vertical-align:bottom;'>Directly: Project Structure Generator/Serializer</h1>", 
-    unsafe_allow_html=True
-)
-
 st.title('Directly: Project Structure Generator/Serializer')
 
 st.sidebar.header('Manual')
