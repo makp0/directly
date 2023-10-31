@@ -63,7 +63,7 @@ File content here
 This format ensures a clear separation between files while keeping the serialized text compact and easy to parse.
 """)
 
-option = st.radio('Choose an option', ('Serialize', 'Deserialize'))
+option = st.radio('Choose an option', ('Deserialize', 'Serialize'))
 
 if option == 'Serialize':
     uploaded_file = st.file_uploader("Upload A Project Archive", type="zip")
@@ -71,7 +71,20 @@ if option == 'Serialize':
         serialized_content = serialize_zip(uploaded_file)
         st.code(serialized_content, language='markdown')
 elif option == 'Deserialize':
-    serialized_text = st.text_area('Paste Serialized Content Here', height=400)
+    sample_data = """\
+--- src/main.py ---
+print("Hello, World!")
+
+--- README.md ---
+# Sample Project
+This is a sample project structure.
+
+--- .gitignore ---
+*.pyc
+"""
+    serialized_text = st.text_area('Paste Serialized Content Here', value=sample_data, height=400)  # Prefilled text
     if serialized_text:
         zip_buffer = deserialize_to_zip(serialized_text)
         st.download_button(label='Download ZIP file', data=zip_buffer, file_name='output.zip')
+
+
