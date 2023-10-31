@@ -19,6 +19,17 @@ Directly is a Streamlit app designed to streamline the process of serializing an
    - Paste the formatted text into the text area.
    - Download the generated ZIP file containing your project structure.
 
+## Installation
+
+Before running Directly, you need to have Streamlit installed on your machine. Follow these steps to install Streamlit:
+
+1. Ensure you have Python 3.6 - 3.8 installed on your machine. You can download Python from [here](https://www.python.org/downloads/).
+2. Install Streamlit using pip:
+
+```bash
+pip install streamlit
+```
+
 ## Development
 
 Clone the repository:
