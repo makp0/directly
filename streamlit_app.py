@@ -82,10 +82,24 @@ This is a sample project structure.
 *.pyc
 """
 
+instruction = (
+    "## Instructions for ChatGPT:\n"
+    "The text below represents a project structure. Each file's content is prefixed by a line with the file's path enclosed in '---', for example:\n"
+    "```\n"
+    "--- path/to/file.txt ---\n"
+    "File content here\n"
+    "```\n"
+    "Please respond using the same format to add, modify, or discuss the code.\n\n"
+)
+
+include_instruction = st.checkbox("Include Instruction for ChatGPT", value=True)
+
 if option == 'Serialize':
     uploaded_file = st.file_uploader("Upload A Project Archive", type="zip")
     if uploaded_file is not None:
         serialized_content = serialize_zip(uploaded_file)
+        if include_instruction:
+            serialized_content = instruction + serialized_content
         st.code(serialized_content, language='markdown')
 elif option == 'Deserialize':
     serialized_text = st.text_area('Paste Serialized Content Here', value=st.session_state['serialized_text'], height=400)
