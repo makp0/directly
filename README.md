@@ -1,5 +1,4 @@
-# Directly
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://directly.streamlit.app)
+# Directly [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://directly.streamlit.app)
 ![Directly Icon](icon.png)
 
 Directly is a Streamlit app designed to streamline the process of serializing and deserializing project structures. Serialize a project structure to a single text file, or deserialize the text file back to a zipped project structure, directly.
