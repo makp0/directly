@@ -69,8 +69,7 @@ if option == 'Serialize':
     uploaded_file = st.file_uploader("Upload a ZIP file", type="zip")
     if uploaded_file is not None:
         serialized_content = serialize_zip(uploaded_file)
-        st.text_area('Serialized Content', value=serialized_content, height=400, key='serialized_content')
-        st.button('Select Text', on_click=lambda: st.session_state['serialized_content'].select_all())
+           st.code(serialized_content, language='markdown')
 elif option == 'Deserialize':
     serialized_text = st.text_area('Paste Serialized Content Here', height=400)
     if serialized_text:
