@@ -1,7 +1,12 @@
 # Directly [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://directly.streamlit.app)
 ![Directly Icon](icon.png)
 
-Directly is a Streamlit app designed to streamline the process of serializing and deserializing project structures. Serialize a project structure to a single text file, or deserialize the text file back to a zipped project structure, directly.
+Directly is a Streamlit app designed to streamline the process of serializing and deserializing project structures. It compresses a project structure into a single text file, or expands the text file back to a zipped project structure, making it easy to convert projects into a format feedable to ChatGPT.
+
+## Unique Value
+
+- **ChatGPT Ready**: Directly compresses project structures into a concise text format, making it easy to input into models like ChatGPT for conversation-based code reviews or discussions.
+- **Bi-directional Conversion**: Easily toggle between a serialized text file and a zipped project structure with a user-friendly interface.
 
 ## Features
 
