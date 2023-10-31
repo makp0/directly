@@ -44,6 +44,8 @@ def deserialize_to_zip(serialized_text):
     zip_buffer.seek(0)
     return zip_buffer
 
+st.set_page_config(page_title="Directrly", page_icon="https://github.com/makp0/directly/blob/main/icon.png?raw=true", layout="centered", initial_sidebar_state="auto", menu_items=None)
+
 st.title('Directly: Project Structure Generator/Serializer')
 
 st.sidebar.header('Manual')
