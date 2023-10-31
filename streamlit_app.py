@@ -98,7 +98,8 @@ instruction = (
     "--- path/to/file.txt ---\n"
     "File content here\n"
     "```\n"
-    "Please respond using the same format to add, modify, or discuss the code.\n\n"
+    "Please respond using the same format to add, modify, or discuss the code. "
+    "**Avoid chunking this code and ensure to output it as a single piece.**\n\n"
 )
 
 if option == 'Serialize':
