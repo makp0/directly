@@ -40,7 +40,7 @@ pip install streamlit
 Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/directly.git
+git clone https://github.com/makp0/directly.git
 cd directly
 ```
 
