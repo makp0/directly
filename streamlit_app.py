@@ -104,13 +104,12 @@ instruction = (
 )
 
 if option == 'Serialize':
-    uploaded_file = None
+    uploaded_file = st.file_uploader("Upload A Project Archive", type="zip")
     if uploaded_file is not None:
         include_instruction = st.checkbox("Include Instruction for ChatGPT", value=True)
         metadata = instruction if include_instruction else None
         serialized_content = serialize_zip(uploaded_file, metadata)
         st.code(serialized_content, language='markdown')
-    uploaded_file = st.file_uploader("Upload A Project Archive", type="zip")
 elif option == 'Deserialize':
     serialized_text = st.text_area('Paste Serialized Content Here', value=st.session_state['serialized_text'], height=400)
     st.session_state['serialized_text'] = serialized_text
