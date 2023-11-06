@@ -104,7 +104,7 @@ instruction = (
 )
 
 if option == 'Serialize':
-    uploaded_file = []
+    uploaded_file = None
     if uploaded_file is not None:
         include_instruction = st.checkbox("Include Instruction for ChatGPT", value=True)
         metadata = instruction if include_instruction else None
