@@ -94,13 +94,14 @@ This is a sample project structure.
 
 instruction = (
     "## Instructions for ChatGPT:\n"
-    "The text below represents a project structure. Each file's content is prefixed by a line with the file's path enclosed in '---', for example:\n"
+    "Everything should be outputed as a single txt. Each file's content is prefixed by a line with the file's path enclosed in '---', for example:\n"
     "```\n"
-    "--- path/to/file.txt ---\n"
-    "File content here\n"
+    "--- path/to/file1.txt ---\n"
+    "File content 1 here\n"
+    "--- path/to/file2.txt ---\n"
+    "File content 2 here\n"
     "```\n"
     "Please respond using the same format to add, modify, or discuss the code. "
-    "**Avoid chunking this code and ensure to output it as a single piece.**\n\n"
 )
 
 if option == 'Serialize':
